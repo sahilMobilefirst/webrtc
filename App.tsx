@@ -1,34 +1,25 @@
+import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect, useState } from 'react';
-import {
-  PermissionsAndroid,
-
-} from 'react-native';
+import { PERMISSIONS, request,RESULTS } from 'react-native-permissions'; 
 
 import WebviewPage from './src/screens/Web';
 import HomeScreen from './src/screens/Home';
+import { PermissionsAndroid } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
-
 const requestPermissions = async () => {
   try {
-    const writeExternalStoragePermission = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-    );
-
-    const recordAudioPermission = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
-    );
-
+    const writeExternalStoragePermission = await request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE);
+    const recordAudioPermission = await request(PERMISSIONS.ANDROID.RECORD_AUDIO);
     const foregroundServicePermission = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.FOREGROUND_SERVICE
     );
 
     if (
-      writeExternalStoragePermission === PermissionsAndroid.RESULTS.GRANTED &&
-      recordAudioPermission === PermissionsAndroid.RESULTS.GRANTED &&
+      writeExternalStoragePermission === RESULTS.GRANTED &&
+      recordAudioPermission === RESULTS.GRANTED &&
       foregroundServicePermission === PermissionsAndroid.RESULTS.GRANTED
     ) {
       console.log('All permissions granted');
@@ -39,8 +30,6 @@ const requestPermissions = async () => {
     console.warn(err);
   }
 };
-
-
 
 function App() {
   useEffect(() => {
@@ -56,7 +45,5 @@ function App() {
     </NavigationContainer>
   );
 }
-
-
 
 export default App;

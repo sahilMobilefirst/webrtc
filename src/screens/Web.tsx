@@ -25,12 +25,13 @@ const WebviewPage = () => {
 
   const startRecording = async () => {
     try {
-      await RecordScreen.startRecording();
-      setIsRecording(true);
+      const res = await RecordScreen.startRecording(); // This starts the recording
+      setIsRecording(true); // This updates the state to indicate that recording is in progress
     } catch (error) {
-      console.error(error);
+      console.error(error); // Log any errors that occur during recording start
     }
   };
+  
 
   const stopRecording = async () => {
     try {
