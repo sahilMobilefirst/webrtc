@@ -3,9 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PERMISSIONS, request,RESULTS } from 'react-native-permissions'; 
 
-import WebviewPage from './src/screens/Web';
+
 import HomeScreen from './src/screens/Home';
 import { PermissionsAndroid } from 'react-native';
+import Lobby from './src/screens/Lobby';
+import Room from './src/screens/Room';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +42,8 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Webview" component={WebviewPage} />
+        <Stack.Screen name="Lobby" component={Lobby} />
+        <Stack.Screen name="Room" component={Room} />
       </Stack.Navigator>
     </NavigationContainer>
   );

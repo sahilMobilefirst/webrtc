@@ -6,8 +6,8 @@ function HomeScreen({ navigation }:any) {
     return (
       <SafeAreaView style={styles.sectionContainer}>
         <Button
-          title="Go to Webpage"
-          onPress={() => navigation.navigate('Webview')}
+          title="Lobby"
+          onPress={() => navigation.navigate('Lobby')}
         />
       </SafeAreaView>
     );
